@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer");
 
-const sendMail = (file) => {
+const sendMail = (customer, file) => {
   // e-mail message options
   let mailOptions = {
     from: 'geetha.vemula1@outlook.com',
-    to: 'geetha.vemula@zessta.com',
-    subject: 'Email from Node-App: A Test Message!',
+    to: "chandrashekar@zessta.com",
+    subject:  customer.Name + ' Due Remainder',
     text: 'Your plan validity is expiring soon.Please recharge immediately to enjoy uninterrupted services...',
-    attachments: [{ filename: 'HTMLandPDF.pdf', path: file }],
+    attachments: [{ filename: customer.Name+'.pdf', path: file }],
   };
 
   // e-mail transport configuration
@@ -25,6 +25,8 @@ const sendMail = (file) => {
       return;
     }
     console.log('Sent: ' + info.response);
+
+    return info;
   })
 
 
